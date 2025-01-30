@@ -11,9 +11,10 @@
 
       <div id="stories-segment_1" class="stories-segment">
         <img :src="bg1" class="bg" alt="">
-        <div id="text_1_1" class="h1" style="top: 35%" v-html="texts.s1_1" />
-        <div id="text_1_2" class="h1" style="top: 48%" v-html="texts.s1_2" />
-        <div id="text_1_3" class="h1" style="top: 61%; z-index: 6" v-html="texts.s1_3" />
+        <div id="text_1_1" class="h1" style="top: 5%" v-html="texts.s1_1" />
+        <div id="text_1_2" class="h1" style="top: 10%" v-html="texts.s1_2" />
+        <div id="text_1_3" class="h1" style="top: 5%" v-html="texts.s1_3" />
+        <div id="text_1_4" class="h1" style="top: 10%" v-html="texts.s1_4" />
 
       </div>
 

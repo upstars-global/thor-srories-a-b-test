@@ -533,18 +533,25 @@ export default {
                     "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
                     "#stories-segment_7"],
                 { opacity: 0, display: "none"});
-            segment1.to(["#text_1_1", "#text_1_2", "#text_1_3"],
+            segment1.to(["#text_1_1", "#text_1_2"],
                 {
                     keyframes: [
-                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
-                        { opacity: 1, scale: 1.3, duration: 0.2 },
-                        { scale: 0.8, duration: 0.3 },
-                        { scale: 1, duration: 0.4, opacity: 1 }
+                        { opacity: 0.5, marginTop: "20%", duration: 0.5 },
+                        { duration: 0.5, opacity: 1 }
                     ],
-                    ease: "power2.inOut",
+                    ease: "power1.inOut",
                     stagger: 0.4
                 });
-
+            segment1.to([],{delay: 1});
+            segment1.to(["#text_1_3", "#text_1_4"],
+                {
+                    keyframes: [
+                        { opacity: 0.5, marginTop: "20%", duration: 0.5 },
+                        { duration: 0.5, opacity: 1 }
+                    ],
+                    ease: "power1.inOut",
+                    stagger: 0.4
+                });
             segment1_duration.value = segment1.duration();
 
 
