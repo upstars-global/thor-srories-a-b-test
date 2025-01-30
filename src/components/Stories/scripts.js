@@ -534,6 +534,11 @@ export default {
                     "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
                     "#stories-segment_7"],
                 { opacity: 0, display: "none"});
+                segment1.add(() => {
+                    const video = document.getElementById("video_bg");
+                    video.currentTime = 0;
+                    video.play();
+                }, 0);
             segment1.fromTo(["#text_1_1", "#text_1_2"],
                 {
                     opacity: 0,
@@ -553,7 +558,7 @@ export default {
                 {
                     opacity: 0,
                     duration: 0.5,
-                    delay: 0.5
+                    delay: 1.5
                 });
             segment1.fromTo(["#text_1_3", "#text_1_4"],
                 {
@@ -570,18 +575,22 @@ export default {
                     duration: 0.5,
                     stagger: 0.3
                 });
+
+                segment1.to(["#text_1_3", "#text_1_4"],
+                {
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 2
+                });
+                
             segment1_duration.value = segment1.duration();
-            console.log(segment1_duration.value);
+
 
 
             // SEGMENT 2
 
             segment2.to("#stories-segment_2",
                 { opacity: 1, display: "block"});
-            segment2.to(["#stories-segment_1", "#stories-segment_3",
-                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
 
                 segment2.fromTo(["#text_2_1", "#text_2_2"],
                     {
@@ -599,10 +608,42 @@ export default {
                         stagger: 0.3
                     });
 
+            segment2.to(["#text_2_1", "#text_2_1"],
+                        {
+                            opacity: 0,
+                            duration: 0.5,
+                            delay: 2.5
+                        });
+
             segment2_duration.value = segment2.duration();
 
             // SEGMENT 3
-            
+
+            segment3.to("#stories-segment_3",
+                { opacity: 1, display: "block"});
+
+            segment3.fromTo(["#text_3_1", "#text_3_2"],
+                {
+                    opacity: 0,
+                    marginTop: "8%",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                },
+                {
+                    opacity: 1,
+                    marginTop: "0",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                });
+
+            segment3.to(["#text_3_1", "#text_3_2"],
+                {
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 2.5
+                });
 
             segment3_duration.value = segment3.duration();
 

@@ -7,7 +7,7 @@
       <img :src="story_icon" class="story_icon" alt="">
     </div>
     <div id="text_container_stories" class="text_container">
-      <video :src="video_bg" class="video_bg" autoplay loop muted></video>
+      <video id="video_bg" :src="video_bg" class="video_bg" loop muted></video>
 
 
       <div id="stories-segment_1" class="stories-segment">
@@ -28,6 +28,8 @@
 
 
       <div id="stories-segment_3" class="stories-segment">
+        <div id="text_3_1" class="h1" style="top: 15%" v-html="texts.s3_1" />
+        <div id="text_3_1" class="h1" style="top: 20%" v-html="texts.s3_2" />
 
 
 
