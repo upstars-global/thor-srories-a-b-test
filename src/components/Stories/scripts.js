@@ -580,7 +580,7 @@ export default {
                 {
                     opacity: 0,
                     duration: 0.5,
-                    delay: 2
+                    delay: 1.5
                 });
                 
             segment1_duration.value = segment1.duration();
@@ -612,7 +612,7 @@ export default {
                         {
                             opacity: 0,
                             duration: 0.5,
-                            delay: 2.5
+                            delay: 3
                         });
 
             segment2_duration.value = segment2.duration();
@@ -642,10 +642,38 @@ export default {
                 {
                     opacity: 0,
                     duration: 0.5,
-                    delay: 2.5
+                    delay: 7
                 });
 
             segment3_duration.value = segment3.duration();
+
+            // SEGMENT 4
+
+            segment4.to("#stories-segment_4",
+                { opacity: 1, display: "block"});
+
+            segment4.fromTo(["#text_4_1", "#text_4_2"],
+                {
+                    opacity: 0,
+                    marginTop: "8%",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                },
+                {
+                    opacity: 1,
+                    marginTop: "0",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                });
+
+            segment4.to(["#text_4_1", "#text_4_2"],
+                {
+                    delay: 12
+                });
+
+            segment4_duration.value = segment4.duration();
 
           
 
@@ -653,7 +681,7 @@ export default {
             tl.add(segment1);
             tl.add(segment2);
             tl.add(segment3);
-
+            tl.add(segment4);
 
 
 
