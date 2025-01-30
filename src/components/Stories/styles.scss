@@ -385,7 +385,8 @@ a {
   left: 0;
   margin-left: 0;
   height: 6.3vh;
-  aspect-ratio: 379/183;
+  width: 30.8vh;
+  aspect-ratio: 215/44;
   z-index: 5;
 }
 
@@ -1453,11 +1454,11 @@ a {
 
 .go_to_promo {
   position: absolute;
-  bottom: 4%;
+  bottom: 3%;
   left: 50%;
   transform: translate(-50%);
-  width: 85%;
-  height: 8vh;
+  width: 90%;
+  height: 6vh;
   text-align: center;
   z-index: 9999;
   border-radius: 5vh;
@@ -1466,7 +1467,7 @@ a {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-size: 3.3vh;
+  font-size: 2.3vh;
   color: #000a12;
   display: flex;
   justify-content: center;
@@ -1509,6 +1510,15 @@ a {
     height: 120%;
     top: 45%;
   }
+}
+
+.video_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 

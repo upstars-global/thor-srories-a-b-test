@@ -33,6 +33,7 @@ import cup_s5_it from "@components/Stories/img/cup_s5_it.webp";
 import cup_s5_fr from "@components/Stories/img/cup_s5_fr.webp";
 import cup_s6 from "@components/Stories/img/cup_s6.webp";
 import confety from "@components/Stories/img/confety.svg";
+import video_bg from "@components/Stories/img/video.mp4";
 
 
 
@@ -527,32 +528,50 @@ export default {
 
 
             // SEGMENT 1
-            segment1.to("#stories-segment_1",
+            segment1.set("#stories-segment_1",
                 { opacity: 1, display: "block"});
-            segment1.to(["#stories-segment_2", "#stories-segment_3",
+            segment1.set(["#stories-segment_2", "#stories-segment_3",
                     "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
                     "#stories-segment_7"],
                 { opacity: 0, display: "none"});
+            segment1.fromTo(["#text_1_1", "#text_1_2"],
+                {
+                    opacity: 0,
+                    marginTop: "8%",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                },
+                {
+                    opacity: 1,
+                    marginTop: "0",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
+                });
             segment1.to(["#text_1_1", "#text_1_2"],
                 {
-                    keyframes: [
-                        { opacity: 0.5, marginTop: "20%", duration: 0.5 },
-                        { duration: 0.5, opacity: 1 }
-                    ],
-                    ease: "power1.inOut",
-                    stagger: 0.4
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: 0.5
                 });
-            segment1.to([],{delay: 1});
-            segment1.to(["#text_1_3", "#text_1_4"],
+            segment1.fromTo(["#text_1_3", "#text_1_4"],
                 {
-                    keyframes: [
-                        { opacity: 0.5, marginTop: "20%", duration: 0.5 },
-                        { duration: 0.5, opacity: 1 }
-                    ],
+                    opacity: 0,
+                    marginTop: "8%",
                     ease: "power1.inOut",
-                    stagger: 0.4
+                    duration: 0.5,
+                    stagger: 0.3
+                },
+                {
+                    opacity: 1,
+                    marginTop: "0",
+                    ease: "power1.inOut",
+                    duration: 0.5,
+                    stagger: 0.3
                 });
             segment1_duration.value = segment1.duration();
+            console.log(segment1_duration.value);
 
 
             // SEGMENT 2
@@ -563,130 +582,37 @@ export default {
                     "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
                     "#stories-segment_7"],
                 { opacity: 0, display: "none"});
-            segment2.to(["#text_2_1", "#sgm2"],
-                {
-                    keyframes: [
-                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
-                        { opacity: 1, scale: 1.3, duration: 0.2 },
-                        { scale: 0.8, duration: 0.3 },
-                        { scale: 1, duration: 0.4, opacity: 1 }
-                    ],
-                    ease: "power2.inOut",
-                    stagger: 0.4
-                });
-            segment2.to("#stories-segment_2",
-                { delay: 1 });
+
+                segment2.fromTo(["#text_2_1", "#text_2_2"],
+                    {
+                        opacity: 0,
+                        marginTop: "8%",
+                        ease: "power1.inOut",
+                        duration: 0.5,
+                        stagger: 0.3
+                    },
+                    {
+                        opacity: 1,
+                        marginTop: "0",
+                        ease: "power1.inOut",
+                        duration: 0.5,
+                        stagger: 0.3
+                    });
 
             segment2_duration.value = segment2.duration();
 
             // SEGMENT 3
-            segment3.add(function () {
-                setTimeout(() => {
-                    const element = document.getElementById("text_3_2");
-
-                    // Check if the element exists
-                    if (element) {
-                        // Replace "EUR" with the provided currency constant
-                        element.innerHTML = element.innerHTML.replace(/EUR/g, currency.value);
-                    } else {
-                        console.error('Element with id "text_3_3" not found.');
-                    }
-                }, 300);
-            });
-            segment3.to("#stories-segment_3",
-                { opacity: 1, display: "block"});
-            segment3.to(["#stories-segment_1", "#stories-segment_2",
-                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
-            segment3.to(["#text_3_1", "#text_3_2", "#text_3_3"],
-                {
-                    keyframes: [
-                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
-                        { opacity: 1, scale: 1.3, duration: 0.2 },
-                        { scale: 0.8, duration: 0.3 },
-                        { scale: 1, duration: 0.4, opacity: 1 }
-                    ],
-                    ease: "power2.inOut",
-                    stagger: 0.4
-                });
-            segment3.to("#stories-segment_3",
-                { delay: 3 });
+            
 
             segment3_duration.value = segment3.duration();
 
-            // SEGMENT 4
-
-
-            segment4.to("#stories-segment_4",
-                { opacity: 1, display: "block" });
-            segment4.to(["#stories-segment_1", "#stories-segment_2",
-                    "#stories-segment_3", "#stories-segment_5", "#stories-segment_6",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
-            segment4.to("#button4_flare",
-                { left: "140%",  duration: 3 });
-
-            segment4.to({}, { duration: 1 });
-
-
-            segment4_duration.value = segment4.duration();
-
-            // // SEGMENT 5
-
-            segment5.to("#stories-segment_5",
-                { opacity: 1, display: "block"});
-            segment5.to(["#stories-segment_1", "#stories-segment_2",
-                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_6",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
-            segment5.to("#button5_flare",
-                { left: "140%",  duration: 3 });
-
-            segment5.to({}, { duration: 1 });
-
-
-            segment5_duration.value = segment5.duration();
-
-
-            // // SEGMENT 6
-            segment6.to("#stories-segment_6",
-                { opacity: 1, display: "block"});
-            segment6.to(["#stories-segment_1", "#stories-segment_2",
-                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_5",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
-            segment6.to("#button6_flare",
-                { left: "140%",  duration: 3 });
-
-            segment6.to({}, { duration: 1 });
-
-
-            segment6_duration.value = segment6.duration();
-
-            // // SEGMENT 7
-            segment7.to("#stories-segment_7",
-                { opacity: 1, display: "block"});
-            segment7.to(["#stories-segment_1", "#stories-segment_2",
-                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_5",
-                    "#stories-segment_6"],
-                { opacity: 0, display: "none"});
-            segment7.to("#button7_flare",
-                { left: "140%",  duration: 3 });
-
-            segment7.to({}, { duration: 1 });
-
-
-            segment7_duration.value = segment7.duration();
+          
 
 
             tl.add(segment1);
             tl.add(segment2);
             tl.add(segment3);
-            tl.add(segment4);
-            tl.add(segment5);
-            tl.add(segment6);
-            tl.add(segment7);
+
 
 
 
@@ -746,6 +672,7 @@ export default {
             cup_s5_fr,
             cup_s6,
             confety,
+            video_bg,
         };
     },
     methods: {
