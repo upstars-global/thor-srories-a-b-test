@@ -13,26 +13,8 @@ import it from '@components/Stories/localization/it.json';
 import de from '@components/Stories/localization/de.json';
 import fr from '@components/Stories/localization/fr.json';
 import story_icon from "@components/Stories/img/avatar.webp";
-import bg1 from "@components/Stories/img/bg1.webp";
-import bg2 from "@components/Stories/img/bg2.webp";
-import bg3 from "@components/Stories/img/bg3.webp";
-import bg4 from "@components/Stories/img/bg4.webp";
-import bg5 from "@components/Stories/img/bg5.webp";
-import bg6 from "@components/Stories/img/bg6.webp";
-import bg7 from "@components/Stories/img/bg7.webp";
 import bottom_gradient1 from "@components/Stories/img/bottom_gradient1.svg";
 import icon_replay from "@components/Stories/img/icons/icon_replay.svg";
-import sgm2 from "@components/Stories/img/sgm_2.webp";
-import cup_s4_en from "@components/Stories/img/cup_s4_en.webp";
-import cup_s4_de from "@components/Stories/img/cup_s4_de.webp";
-import cup_s4_it from "@components/Stories/img/cup_s4_it.webp";
-import cup_s4_fr from "@components/Stories/img/cup_s4_fr.webp";
-import cup_s5_en from "@components/Stories/img/cup_s5_en.webp";
-import cup_s5_de from "@components/Stories/img/cup_s5_de.webp";
-import cup_s5_it from "@components/Stories/img/cup_s5_it.webp";
-import cup_s5_fr from "@components/Stories/img/cup_s5_fr.webp";
-import cup_s6 from "@components/Stories/img/cup_s6.webp";
-import confety from "@components/Stories/img/confety.svg";
 import video_bg from "@components/Stories/img/video.mp4";
 
 
@@ -393,6 +375,7 @@ export default {
                 isPlaying.value = false;
                 isPaused.value = true;
                 tl.pause();
+                document.getElementById("video_bg").pause();
                 gtag('event', 'click_pause', {
                     'event_category': 'button',
                     'event_label': 'pause'
@@ -401,6 +384,7 @@ export default {
                 isPlaying.value = true;
                 isPaused.value = false;
                 tl.play();
+                document.getElementById("video_bg").play();
                 gtag('event', 'click_start', {
                     'event_category': 'button',
                     'event_label': 'start'
@@ -612,7 +596,7 @@ export default {
                         {
                             opacity: 0,
                             duration: 0.5,
-                            delay: 3
+                            delay: 5
                         });
 
             segment2_duration.value = segment2.duration();
@@ -642,7 +626,7 @@ export default {
                 {
                     opacity: 0,
                     duration: 0.5,
-                    delay: 7
+                    delay: 9
                 });
 
             segment3_duration.value = segment3.duration();
@@ -709,38 +693,16 @@ export default {
             texts,
             currency,
             name,
-            getGift1,
-            getGift2,
-            getGift3,
-            getGift4,
             closeStory,
             watchAgain,
             thumbs_part,
             story_icon,
-            bg1,
-            bg2,
-            bg3,
-            bg4,
-            bg5,
-            bg6,
-            bg7,
             bottom_gradient1,
             icon_replay,
             players,
             prizes,
             top_prize,
             player_name,
-            sgm2,
-            cup_s4_en,
-            cup_s5_en,
-            cup_s4_de,
-            cup_s5_de,
-            cup_s4_it,
-            cup_s5_it,
-            cup_s4_fr,
-            cup_s5_fr,
-            cup_s6,
-            confety,
             video_bg,
         };
     },

@@ -64,7 +64,7 @@ export default {
   display: flex;
   justify-content: center;
   @include media(M) {
-    top: 6%;
+    top: 5%;
   }
 }
 .bar-container {
