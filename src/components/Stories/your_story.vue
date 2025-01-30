@@ -15,10 +15,6 @@
         <div id="text_1_2" class="h1" style="top: 48%" v-html="texts.s1_2" />
         <div id="text_1_3" class="h1" style="top: 61%; z-index: 6" v-html="texts.s1_3" />
 
-
-
-
-
       </div>
 
       <div id="stories-segment_2" class="stories-segment">

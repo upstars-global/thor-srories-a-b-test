@@ -87,11 +87,11 @@ export default {
 }
 
 .control-button:hover {
-  background-color: var(--color-secondary-1);
+  background-color: var(--color-primary-1);
 }
 
 .control-button:hover .stories-arrow-shape {
-  fill: var(--color-tertiary-1);
+  fill: var(--color-layer-body);
 }
 
 </style>
