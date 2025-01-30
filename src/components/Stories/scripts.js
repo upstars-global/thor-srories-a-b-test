@@ -1,0 +1,756 @@
+
+
+import { ref, computed, onMounted } from "vue";
+import StoriesTopBar from "@components/Stories/UI/storiesTopBar.vue";
+import mobileControlArea from "@components/Stories/UI/mobileControlArea.vue";
+import desktopControlButton from "@components/Stories/UI/desktopControlButton.vue";
+import desktopPausePlayButton from "@components/Stories/UI/desktopPausePlayButton.vue";
+import CloseButton from "@components/Stories/UI/closeButton.vue";
+import gsap from "gsap";
+import availableLanguages from "/src/components/Stories/localization/available-languages.json";
+import en from '@components/Stories/localization/en.json';
+import it from '@components/Stories/localization/it.json';
+import de from '@components/Stories/localization/de.json';
+import fr from '@components/Stories/localization/fr.json';
+import story_icon from "@components/Stories/img/avatar.webp";
+import bg1 from "@components/Stories/img/bg1.webp";
+import bg2 from "@components/Stories/img/bg2.webp";
+import bg3 from "@components/Stories/img/bg3.webp";
+import bg4 from "@components/Stories/img/bg4.webp";
+import bg5 from "@components/Stories/img/bg5.webp";
+import bg6 from "@components/Stories/img/bg6.webp";
+import bg7 from "@components/Stories/img/bg7.webp";
+import bottom_gradient1 from "@components/Stories/img/bottom_gradient1.svg";
+import icon_replay from "@components/Stories/img/icons/icon_replay.svg";
+import sgm2 from "@components/Stories/img/sgm_2.webp";
+import cup_s4_en from "@components/Stories/img/cup_s4_en.webp";
+import cup_s4_de from "@components/Stories/img/cup_s4_de.webp";
+import cup_s4_it from "@components/Stories/img/cup_s4_it.webp";
+import cup_s4_fr from "@components/Stories/img/cup_s4_fr.webp";
+import cup_s5_en from "@components/Stories/img/cup_s5_en.webp";
+import cup_s5_de from "@components/Stories/img/cup_s5_de.webp";
+import cup_s5_it from "@components/Stories/img/cup_s5_it.webp";
+import cup_s5_fr from "@components/Stories/img/cup_s5_fr.webp";
+import cup_s6 from "@components/Stories/img/cup_s6.webp";
+import confety from "@components/Stories/img/confety.svg";
+
+
+
+
+
+
+export default {
+    name: "Bonuses",
+    components: {
+        StoriesTopBar,
+        mobileControlArea,
+        desktopControlButton,
+        desktopPausePlayButton,
+        CloseButton,
+    },
+    setup() {
+        const defaultDuration = 0.3;
+        const tl = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                currentTime.value = tl.time();
+            }
+        });
+        const reach_end = ref(false);
+        const segment1_time = ref(0);
+        const segment2_time = ref(0);
+        const segment3_time = ref(0);
+        const segment4_time = ref(0);
+        const segment5_time = ref(0);
+        const segment6_time = ref(0);
+        const segment7_time = ref(0);
+        const segment8_time = ref(0);
+        const segment1_duration = ref(0);
+        const segment2_duration = ref(0);
+        const segment3_duration = ref(0);
+        const segment4_duration = ref(0);
+        const segment5_duration = ref(0);
+        const segment6_duration = ref(0);
+        const segment7_duration = ref(0);
+        const segment8_duration = ref(0);
+
+
+        const segment1 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment1_time.value = segment1.time();
+            }
+        });
+        const segment2 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment2_time.value = segment2.time();
+            }
+        });
+        const segment3 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment3_time.value = segment3.time();
+            }
+        });
+        const segment4 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment4_time.value = segment4.time();
+            }
+        });
+        const segment5 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment5_time.value = segment5.time();
+            }
+        });
+        const segment6 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment6_time.value = segment6.time();
+            }
+        });
+        const segment7 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment7_time.value = segment7.time();
+            }
+        });
+        const segment8 = gsap.timeline({
+            defaults: { duration: defaultDuration, ease: "power1.inOut" },
+            onUpdate: () => {
+                segment8_time.value = segment8.time();
+            }
+        });
+        const texts = ref('en');
+        const currency = ref('EUR');
+        const name = ref('');
+        const player_name = ref('');
+        const end_link1 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
+        const end_link2 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
+        const end_link3 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
+        const end_link4 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
+        const end_link5 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
+        const players = ref(1150);
+        const prizes = ref(965);
+        const top_prize = ref(5000);
+        const pressTimer = ref(null);
+        const pressDuration = 500;
+        const longPress = ref(false);
+        const currentTime = ref(0);
+        const duration = ref(0);
+        const shouldSeek = ref(0);
+        const isPlaying = ref(true);
+        const isPaused = ref(false);
+        const thumbs_part = ref(0);
+        const numberOfSegments = ref(6);
+        const isPlayingHasBeenSet = ref(false);
+        const animationPauseStyle = computed(() => ({
+            "animation-play-state": isPaused.value ? "paused" : "running",
+        }));
+        const languageMap = {
+            en,
+            it,
+            de,
+            fr
+        };
+
+        const updateTime = () => {
+            currentTime.value = tl.time;
+            duration.value = tl.duration;
+
+        };
+        const progress = computed(() => {
+            let result = 0;
+            let totalSegments = 0;
+
+            let segment1Progress = 0;
+            if (segment1_duration.value > 0) {
+                segment1Progress = segment1_time.value / segment1_duration.value;
+                totalSegments++;
+            }
+
+            let segment2Progress = 0;
+            if (segment2_duration.value > 0) {
+                segment2Progress = segment2_time.value / segment2_duration.value;
+                totalSegments++;
+            }
+
+            let segment3Progress = 0;
+            if (segment3_duration.value > 0) {
+                segment3Progress = segment3_time.value / segment3_duration.value;
+                totalSegments++;
+            }
+
+            let segment4Progress = 0;
+            if (segment4_duration.value > 0) {
+                segment4Progress = segment4_time.value / segment4_duration.value;
+                totalSegments++;
+            }
+
+            let segment5Progress = 0;
+            if (segment5_duration.value > 0) {
+                segment5Progress = segment5_time.value / segment5_duration.value;
+                totalSegments++;
+            }
+
+            let segment6Progress = 0;
+            if (segment6_duration.value > 0) {
+                segment6Progress = segment6_time.value / segment6_duration.value;
+                totalSegments++;
+            }
+
+            let segment7Progress = 0;
+            if (segment7_duration.value > 0) {
+                segment7Progress = segment7_time.value / segment7_duration.value;
+                totalSegments++;
+            }
+
+            let segment8Progress = 0;
+            if (segment8_duration.value > 0) {
+                segment8Progress = segment8_time.value / segment8_duration.value;
+                totalSegments++;
+            }
+
+            if (totalSegments > 0) {
+                const computedValue = (segment1Progress + segment2Progress +
+                        segment3Progress  + segment4Progress + segment5Progress + segment6Progress +
+                        segment7Progress + segment8Progress)
+                    / totalSegments * 100;
+                numberOfSegments.value = totalSegments;
+                if (!isNaN(computedValue)) {
+                    result = computedValue;
+                }
+            }
+
+            if (segment8_time.value > 0 && !reach_end.value) {
+                gtag('event', 'reach_end', {
+                    'event_category': 'user_session',
+                    'event_label': 'reach_end'
+                });
+                reach_end.value = true;
+            }
+
+            return result;
+        });
+
+
+
+
+        const segmentStartTimes = computed(() => [
+            0, // The first segment starts at 0
+            segment1_duration.value,
+            segment1_duration.value + segment2_duration.value,
+            segment1_duration.value + segment2_duration.value + segment3_duration.value,
+            segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4_duration.value,
+            segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4_duration.value + segment5_duration.value,
+            segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4_duration.value + segment5_duration.value + segment6_duration.value,
+            segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4_duration.value + segment5_duration.value + segment6_duration.value + segment7_duration.value,
+        ]);
+
+        const jumpToSegment = (direction) => {
+            // Calculate the current segment based on the start times
+            let currentSegment = segmentStartTimes.value.findIndex((startTime, i) => {
+                return currentTime.value >= startTime && currentTime.value < segmentStartTimes.value[i + 1];
+            });
+
+            if (direction === "backward") {
+
+                // If it's the first segment, do not jump to the last one
+                if (currentSegment === -1) {
+                    let newTime = segmentStartTimes.value[numberOfSegments.value - 2];
+                    tl.time(newTime + defaultDuration);
+                } else {
+
+                let newTime = segmentStartTimes.value[currentSegment - 1];
+                if (newTime < 0) {
+                    newTime = 0;
+                }
+                tl.time(newTime + defaultDuration);
+                }
+
+
+                gtag('event', 'click_backward', {
+                    'event_category': 'button',
+                    'event_label': 'backward'
+                });
+            } else if (direction === "forward") {
+
+                // If it's the last segment or beyond, do not jump to the first one
+                if (currentSegment === -1) {
+                    return;
+                }
+
+                let newTime = segmentStartTimes.value[currentSegment + 1];
+                tl.time(newTime);
+
+                gtag('event', 'click_forward', {
+                    'event_category': 'button',
+                    'event_label': 'forward'
+                });
+            }
+        };
+
+
+
+        const closeStory = () => {
+            gtag('event', 'close_story', {
+                'event_category': 'button',
+                'event_label': end_link5.value
+            });
+            setTimeout(() => {
+                window.location.href = end_link5.value;
+            }, 150);
+        };
+        const getGift1 = () => {
+            gtag('event', 'go_to_link_1', {
+                'event_category': 'button',
+                'event_label': end_link1.value
+            });
+            setTimeout(() => {
+                window.location.href = end_link1.value;
+            }, 150);
+        };
+        const getGift2 = () => {
+            gtag('event', 'go_to_link_2', {
+                'event_category': 'button',
+                'event_label': end_link2.value
+            });
+            setTimeout(() => {
+                window.location.href = end_link2.value;
+            }, 150);
+        };
+        const getGift3 = () => {
+            gtag('event', 'go_to_link_3', {
+                'event_category': 'button',
+                'event_label': end_link3.value
+            });
+            setTimeout(() => {
+                window.location.href = end_link3.value;
+            }, 150);
+        };
+        const getGift4 = () => {
+            gtag('event', 'go_to_link_4', {
+                'event_category': 'button',
+                'event_label': end_link4.value
+            });
+            setTimeout(() => {
+                window.location.href = end_link4.value;
+            }, 150);
+        };
+        const watchAgain = () => {
+            gtag('event', 'watch_again', {
+                'event_category': 'button',
+                'event_label': 'watch_again'
+            });
+                setTimeout(() => {
+            window.location.reload();
+                }, 150);
+        };
+        let pauseTimer = null;
+
+        const playerPause = () => {
+            isPlaying.value = false;
+            isPaused.value = true;
+            tl.pause();
+            // Clear any existing timer
+            if (pauseTimer) {
+                clearTimeout(pauseTimer);
+            }
+
+            // Start a new timer
+            pauseTimer = setTimeout(() => {
+                if (!isPlaying.value) {
+                    if (currentTime.value > 0.6) {
+                        window.parent.postMessage("click_pause", "*");
+                        gtag('event', 'click_pause', {
+                            'event_category': 'button',
+                            'event_label': 'click_pause'
+                        });
+                    }
+                }
+            }, 300);
+        };
+        const playerPlay = () => {
+            isPlaying.value = true;
+            isPaused.value = false;
+            tl.play();
+            if (longPress.value) {
+                if (currentTime.value > 0.4) {
+                    window.parent.postMessage("click_start", "*");
+                    gtag('event', 'click_start', {
+                        'event_category': 'button',
+                        'event_label': 'click_start'
+                    });
+                }
+            }
+        };
+
+        const togglePlayState = () => {
+            if (isPlaying.value) {
+                isPlaying.value = false;
+                isPaused.value = true;
+                tl.pause();
+                gtag('event', 'click_pause', {
+                    'event_category': 'button',
+                    'event_label': 'pause'
+                });
+            } else {
+                isPlaying.value = true;
+                isPaused.value = false;
+                tl.play();
+                gtag('event', 'click_start', {
+                    'event_category': 'button',
+                    'event_label': 'start'
+                });
+            }
+        };
+
+        const press = () => {
+            playerPause();
+            pressTimer.value = setTimeout(() => {
+                longPress.value = true;
+            }, pressDuration);
+        };
+
+        const release = (direction) => {
+            clearTimeout(pressTimer.value);
+
+            if (longPress.value) {
+                playerPlay();
+            } else {
+                playerPlay();
+                jumpToSegment(direction);
+            }
+            longPress.value = false;
+        };
+
+        const handleEvent = (direction, event) => {
+            if (event.type === "touchstart") {
+                event.preventDefault();
+                press(direction);
+            } else if (event.type === "mousedown") {
+                press(direction);
+            }
+        };
+
+
+        const handleEventEnd = (direction, event) => {
+            if (event.type === "touchend") {
+                event.preventDefault();
+                release(direction);
+            } else if (event.type === "mouseup") {
+                release(direction);
+            }
+        };
+
+        onMounted(async () => {
+            window.addEventListener("resize", () => {
+                let vh = Math.round(window.innerHeight / 100);
+                document.documentElement.style.setProperty("--vh", `${vh}px`);
+            });
+
+
+
+            const fullURL = window.location.href;
+            const queryStartIndex = fullURL.indexOf('?');
+
+            if (queryStartIndex !== -1) {
+                const queryPart = fullURL.slice(queryStartIndex + 1);
+                const params = queryPart.split('&').reduce((acc, pair) => {
+                    const [key, value] = pair.split('=');
+                    acc[key] = decodeURIComponent(value);
+                    return acc;
+                }, {});
+
+                if (params.language) {
+                    texts.value = params.language;
+                }
+                if (params.player_name) {
+                    player_name.value = params.player_name;
+                }
+                if (params.currency) {
+                    currency.value = params.currency;
+                }
+                if (params.top_prize) {
+                    top_prize.value = params.top_prize;
+                }
+                if (params.players) {
+                    players.value = params.players;
+                }
+                if (params.prizes) {
+                    prizes.value = params.prizes;
+                }
+
+                name.value = params.name;
+                if (params.end_link1) {
+                    end_link1.value = params.end_link1;
+                }
+                if (params.end_link2) {
+                    end_link2.value = params.end_link2;
+                }
+                if (params.end_link3) {
+                    end_link3.value = params.end_link3;
+                }
+                if (params.end_link4) {
+                    end_link4.value = params.end_link4;
+                }
+                if (params.close) {
+                    end_link5.value = params.close;
+                }
+
+            } else {
+
+                const defaultLanguage = navigator.language.split('-')[0];
+                if (availableLanguages.languages.includes(defaultLanguage)) {
+                    texts.value = defaultLanguage;
+                }
+
+            }
+
+            const locale = texts.value;
+
+            if (availableLanguages.languages.includes(locale)) {
+                texts.value = languageMap[locale];
+            } else {
+                texts.value = en;
+            }
+
+            for (let key in texts.value) {
+                if (typeof texts.value[key] === 'string') {
+                    texts.value[key] = texts.value[key].replace(/\n/g, '<br>');
+                }
+            }
+
+
+
+
+            // SEGMENT 1
+            segment1.to("#stories-segment_1",
+                { opacity: 1, display: "block"});
+            segment1.to(["#stories-segment_2", "#stories-segment_3",
+                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment1.to(["#text_1_1", "#text_1_2", "#text_1_3"],
+                {
+                    keyframes: [
+                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
+                        { opacity: 1, scale: 1.3, duration: 0.2 },
+                        { scale: 0.8, duration: 0.3 },
+                        { scale: 1, duration: 0.4, opacity: 1 }
+                    ],
+                    ease: "power2.inOut",
+                    stagger: 0.4
+                });
+
+            segment1_duration.value = segment1.duration();
+
+
+            // SEGMENT 2
+
+            segment2.to("#stories-segment_2",
+                { opacity: 1, display: "block"});
+            segment2.to(["#stories-segment_1", "#stories-segment_3",
+                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment2.to(["#text_2_1", "#sgm2"],
+                {
+                    keyframes: [
+                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
+                        { opacity: 1, scale: 1.3, duration: 0.2 },
+                        { scale: 0.8, duration: 0.3 },
+                        { scale: 1, duration: 0.4, opacity: 1 }
+                    ],
+                    ease: "power2.inOut",
+                    stagger: 0.4
+                });
+            segment2.to("#stories-segment_2",
+                { delay: 1 });
+
+            segment2_duration.value = segment2.duration();
+
+            // SEGMENT 3
+            segment3.add(function () {
+                setTimeout(() => {
+                    const element = document.getElementById("text_3_2");
+
+                    // Check if the element exists
+                    if (element) {
+                        // Replace "EUR" with the provided currency constant
+                        element.innerHTML = element.innerHTML.replace(/EUR/g, currency.value);
+                    } else {
+                        console.error('Element with id "text_3_3" not found.');
+                    }
+                }, 300);
+            });
+            segment3.to("#stories-segment_3",
+                { opacity: 1, display: "block"});
+            segment3.to(["#stories-segment_1", "#stories-segment_2",
+                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment3.to(["#text_3_1", "#text_3_2", "#text_3_3"],
+                {
+                    keyframes: [
+                        { opacity: 0.5, scale: 0.65, marginTop: "0", duration: 0.1 },
+                        { opacity: 1, scale: 1.3, duration: 0.2 },
+                        { scale: 0.8, duration: 0.3 },
+                        { scale: 1, duration: 0.4, opacity: 1 }
+                    ],
+                    ease: "power2.inOut",
+                    stagger: 0.4
+                });
+            segment3.to("#stories-segment_3",
+                { delay: 3 });
+
+            segment3_duration.value = segment3.duration();
+
+            // SEGMENT 4
+
+
+            segment4.to("#stories-segment_4",
+                { opacity: 1, display: "block" });
+            segment4.to(["#stories-segment_1", "#stories-segment_2",
+                    "#stories-segment_3", "#stories-segment_5", "#stories-segment_6",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment4.to("#button4_flare",
+                { left: "140%",  duration: 3 });
+
+            segment4.to({}, { duration: 1 });
+
+
+            segment4_duration.value = segment4.duration();
+
+            // // SEGMENT 5
+
+            segment5.to("#stories-segment_5",
+                { opacity: 1, display: "block"});
+            segment5.to(["#stories-segment_1", "#stories-segment_2",
+                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_6",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment5.to("#button5_flare",
+                { left: "140%",  duration: 3 });
+
+            segment5.to({}, { duration: 1 });
+
+
+            segment5_duration.value = segment5.duration();
+
+
+            // // SEGMENT 6
+            segment6.to("#stories-segment_6",
+                { opacity: 1, display: "block"});
+            segment6.to(["#stories-segment_1", "#stories-segment_2",
+                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_5",
+                    "#stories-segment_7"],
+                { opacity: 0, display: "none"});
+            segment6.to("#button6_flare",
+                { left: "140%",  duration: 3 });
+
+            segment6.to({}, { duration: 1 });
+
+
+            segment6_duration.value = segment6.duration();
+
+            // // SEGMENT 7
+            segment7.to("#stories-segment_7",
+                { opacity: 1, display: "block"});
+            segment7.to(["#stories-segment_1", "#stories-segment_2",
+                    "#stories-segment_3", "#stories-segment_4", "#stories-segment_5",
+                    "#stories-segment_6"],
+                { opacity: 0, display: "none"});
+            segment7.to("#button7_flare",
+                { left: "140%",  duration: 3 });
+
+            segment7.to({}, { duration: 1 });
+
+
+            segment7_duration.value = segment7.duration();
+
+
+            tl.add(segment1);
+            tl.add(segment2);
+            tl.add(segment3);
+            tl.add(segment4);
+            tl.add(segment5);
+            tl.add(segment6);
+            tl.add(segment7);
+
+
+
+
+            duration.value = tl.duration();
+
+        });
+
+        return {
+            isPlayingHasBeenSet,
+            progress,
+            updateTime,
+            shouldSeek,
+            playerPause,
+            playerPlay,
+            isPlaying,
+            press,
+            release,
+            numberOfSegments,
+            handleEvent,
+            handleEventEnd,
+            jumpToSegment,
+            togglePlayState,
+            animationPauseStyle,
+            texts,
+            currency,
+            name,
+            getGift1,
+            getGift2,
+            getGift3,
+            getGift4,
+            closeStory,
+            watchAgain,
+            thumbs_part,
+            story_icon,
+            bg1,
+            bg2,
+            bg3,
+            bg4,
+            bg5,
+            bg6,
+            bg7,
+            bottom_gradient1,
+            icon_replay,
+            players,
+            prizes,
+            top_prize,
+            player_name,
+            sgm2,
+            cup_s4_en,
+            cup_s5_en,
+            cup_s4_de,
+            cup_s5_de,
+            cup_s4_it,
+            cup_s5_it,
+            cup_s4_fr,
+            cup_s5_fr,
+            cup_s6,
+            confety,
+        };
+    },
+    methods: {
+        reloadPage() {
+            gtag('event', 'click_replay', {
+                'event_category': 'button',
+                'event_label': 'replay'
+            });
+            setTimeout(() => {
+                window.location.reload();
+            }, 150);
+        }
+    }
+
+};
