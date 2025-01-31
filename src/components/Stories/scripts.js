@@ -626,7 +626,7 @@ export default {
                 {
                     opacity: 0,
                     duration: 0.5,
-                    delay: 9
+                    delay: 7
                 });
 
             segment3_duration.value = segment3.duration();
@@ -654,7 +654,7 @@ export default {
 
             segment4.to(["#text_4_1", "#text_4_2"],
                 {
-                    delay: 12
+                    delay: 15
                 });
 
             segment4_duration.value = segment4.duration();
