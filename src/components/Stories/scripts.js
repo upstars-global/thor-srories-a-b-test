@@ -16,6 +16,7 @@ import story_icon from "@components/Stories/img/avatar.webp";
 import bottom_gradient1 from "@components/Stories/img/bottom_gradient1.svg";
 import icon_replay from "@components/Stories/img/icons/icon_replay.svg";
 import video_bg from "@components/Stories/img/video.mp4";
+import video_bg_webm from "@components/Stories/img/video.webm";
 
 
 
@@ -34,6 +35,7 @@ export default {
     setup() {
         const defaultDuration = 0.3;
         const tl = gsap.timeline({
+            paused: true,
             defaults: { duration: defaultDuration, ease: "power1.inOut" },
             onUpdate: () => {
                 currentTime.value = tl.time();
@@ -56,6 +58,7 @@ export default {
         const segment6_duration = ref(0);
         const segment7_duration = ref(0);
         const segment8_duration = ref(0);
+        const video = ref(null);
 
 
         const segment1 = gsap.timeline({
@@ -110,12 +113,6 @@ export default {
         const currency = ref('EUR');
         const name = ref('');
         const player_name = ref('');
-        const end_link1 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
-        const end_link2 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
-        const end_link3 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
-        const end_link4 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
-        const end_link5 = ref('https://winspirit.com/registration?utm_source=site&utm_medium=story&utm_campaign=euro_2024_story');
-        const players = ref(1150);
         const prizes = ref(965);
         const top_prize = ref(5000);
         const pressTimer = ref(null);
@@ -286,42 +283,6 @@ export default {
                 window.location.href = end_link5.value;
             }, 150);
         };
-        const getGift1 = () => {
-            gtag('event', 'go_to_link_1', {
-                'event_category': 'button',
-                'event_label': end_link1.value
-            });
-            setTimeout(() => {
-                window.location.href = end_link1.value;
-            }, 150);
-        };
-        const getGift2 = () => {
-            gtag('event', 'go_to_link_2', {
-                'event_category': 'button',
-                'event_label': end_link2.value
-            });
-            setTimeout(() => {
-                window.location.href = end_link2.value;
-            }, 150);
-        };
-        const getGift3 = () => {
-            gtag('event', 'go_to_link_3', {
-                'event_category': 'button',
-                'event_label': end_link3.value
-            });
-            setTimeout(() => {
-                window.location.href = end_link3.value;
-            }, 150);
-        };
-        const getGift4 = () => {
-            gtag('event', 'go_to_link_4', {
-                'event_category': 'button',
-                'event_label': end_link4.value
-            });
-            setTimeout(() => {
-                window.location.href = end_link4.value;
-            }, 150);
-        };
         const watchAgain = () => {
             gtag('event', 'watch_again', {
                 'event_category': 'button',
@@ -375,7 +336,7 @@ export default {
                 isPlaying.value = false;
                 isPaused.value = true;
                 tl.pause();
-                document.getElementById("video_bg").pause();
+                video.value.pause();
                 gtag('event', 'click_pause', {
                     'event_category': 'button',
                     'event_label': 'pause'
@@ -384,7 +345,7 @@ export default {
                 isPlaying.value = true;
                 isPaused.value = false;
                 tl.play();
-                document.getElementById("video_bg").play();
+                video.value.play();
                 gtag('event', 'click_start', {
                     'event_category': 'button',
                     'event_label': 'start'
@@ -461,9 +422,6 @@ export default {
                 if (params.top_prize) {
                     top_prize.value = params.top_prize;
                 }
-                if (params.players) {
-                    players.value = params.players;
-                }
                 if (params.prizes) {
                     prizes.value = params.prizes;
                 }
@@ -509,12 +467,11 @@ export default {
             }
 
 
-            const video = document.getElementById("video_bg");
 
             // SEGMENT 1
                 segment1.add(() => {
-                    video.currentTime = 0;
-                    video.play();
+                    video.value.currentTime = 0;
+                    video.value.play();
                 }, 0);
             segment1.fromTo(["#text_1_1", "#text_1_2"],
                 {
@@ -568,8 +525,8 @@ export default {
 
 
             segment2.add(() => {
-                video.currentTime = segment1_duration.value;
-                video.play();
+                video.value.currentTime = segment1_duration.value;
+                video.value.play();
             }, 0);
             segment2.fromTo(["#text_2_1", "#text_2_2"],
                     {
@@ -599,8 +556,8 @@ export default {
             // SEGMENT 3
 
             segment3.add(() => {
-                video.currentTime = segment1_duration.value + segment2_duration.value;
-                video.play();
+                video.value.currentTime = segment1_duration.value + segment2_duration.value;
+                video.value.play();
             }, 0);
             segment3.fromTo(["#text_3_1", "#text_3_2"],
                 {
@@ -631,8 +588,8 @@ export default {
 
 
             segment4.add(() => {
-                video.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value;
-                video.play();
+                video.value.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value;
+                video.value.play();
             }, 0);
             segment4.fromTo(["#text_4_1", "#text_4_2"],
                 {
@@ -664,6 +621,7 @@ export default {
             tl.add(segment2);
             tl.add(segment3);
             tl.add(segment4);
+            tl.play();
 
 
 
@@ -697,11 +655,12 @@ export default {
             story_icon,
             bottom_gradient1,
             icon_replay,
-            players,
             prizes,
             top_prize,
             player_name,
             video_bg,
+            video_bg_webm,
+            video,
         };
     },
     methods: {
