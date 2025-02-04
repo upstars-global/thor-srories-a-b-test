@@ -283,10 +283,10 @@ export default {
         const closeStory = () => {
             gtag('event', 'close_story', {
                 'event_category': 'button',
-                'event_label': end_link5.value
+                'event_label': end_link.value
             });
             setTimeout(() => {
-                window.location.href = end_link5.value;
+                window.location.href = end_link.value;
             }, 150);
         };
         const watchAgain = () => {
@@ -297,6 +297,17 @@ export default {
                 setTimeout(() => {
             window.location.reload();
                 }, 150);
+        };
+
+        const regButton = () => {
+            gtag('event', 'reg_button', {
+                'event_category': 'button',
+                'event_label': 'reg_button'
+            });
+            setTimeout(() => {
+                window.location.href = end_link.value;
+            }, 150);
+            
         };
         let pauseTimer = null;
 
@@ -435,20 +446,8 @@ export default {
                 }
 
                 name.value = params.name;
-                if (params.end_link1) {
-                    end_link1.value = params.end_link1;
-                }
-                if (params.end_link2) {
-                    end_link2.value = params.end_link2;
-                }
-                if (params.end_link3) {
-                    end_link3.value = params.end_link3;
-                }
-                if (params.end_link4) {
-                    end_link4.value = params.end_link4;
-                }
-                if (params.close) {
-                    end_link5.value = params.close;
+                if (params.end_link) {
+                    end_link.value = params.end_link;
                 }
 
             } else {
@@ -660,6 +659,7 @@ export default {
             video_bg,
             video_bg_webm,
             video,
+            regButton
         };
     },
     methods: {
