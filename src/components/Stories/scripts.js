@@ -241,6 +241,7 @@ export default {
                 if (currentSegment === -1) {
                     let newTime = segmentStartTimes.value[numberOfSegments.value - 2];
                     tl.time(newTime + defaultDuration);
+                    video.value.currentTime = newTime + defaultDuration;
                 } else {
 
                 let newTime = segmentStartTimes.value[currentSegment - 1];
@@ -248,6 +249,7 @@ export default {
                     newTime = 0;
                 }
                 tl.time(newTime + defaultDuration);
+                video.value.currentTime = newTime + defaultDuration;
                 }
 
 
@@ -264,7 +266,7 @@ export default {
 
                 let newTime = segmentStartTimes.value[currentSegment + 1];
                 tl.time(newTime);
-
+                video.value.currentTime = newTime + defaultDuration;
                 gtag('event', 'click_forward', {
                     'event_category': 'button',
                     'event_label': 'forward'
