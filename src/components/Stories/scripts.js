@@ -612,6 +612,11 @@ export default {
                     delay: 15
                 });
 
+            segment4.add(() => {
+                video.value.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4.duration();
+                video.value.play();
+            }, 0);
+
             segment4_duration.value = segment4.duration();
 
           
