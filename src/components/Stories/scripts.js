@@ -59,6 +59,7 @@ export default {
         const segment7_duration = ref(0);
         const segment8_duration = ref(0);
         const video = ref(null);
+        const end_link = ref('https://winspirit3.com/registration');
 
 
         const segment1 = gsap.timeline({
