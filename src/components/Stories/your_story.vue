@@ -90,7 +90,7 @@
 <script src="./scripts.js"></script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
 @import "~@theme/styles";
 @import "styles";
 
