@@ -509,17 +509,15 @@ export default {
             }
 
 
-
+            const video = document.getElementById("video_bg");
 
             // SEGMENT 1
-            segment1.set("#stories-segment_1",
-                { opacity: 1, display: "block"});
             segment1.set(["#stories-segment_2", "#stories-segment_3",
                     "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
                     "#stories-segment_7"],
                 { opacity: 0, display: "none"});
                 segment1.add(() => {
-                    const video = document.getElementById("video_bg");
+
                     video.currentTime = 0;
                     video.play();
                 }, 0);
@@ -573,10 +571,8 @@ export default {
 
             // SEGMENT 2
 
-            segment2.to("#stories-segment_2",
-                { opacity: 1, display: "block"});
 
-                segment2.fromTo(["#text_2_1", "#text_2_2"],
+            segment2.fromTo(["#text_2_1", "#text_2_2"],
                     {
                         opacity: 0,
                         marginTop: "8%",
@@ -602,9 +598,6 @@ export default {
             segment2_duration.value = segment2.duration();
 
             // SEGMENT 3
-
-            segment3.to("#stories-segment_3",
-                { opacity: 1, display: "block"});
 
             segment3.fromTo(["#text_3_1", "#text_3_2"],
                 {
@@ -633,8 +626,6 @@ export default {
 
             // SEGMENT 4
 
-            segment4.to("#stories-segment_4",
-                { opacity: 1, display: "block"});
 
             segment4.fromTo(["#text_4_1", "#text_4_2"],
                 {
