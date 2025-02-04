@@ -263,14 +263,18 @@ export default {
                 if (currentSegment === -1) {
                     return;
                 }
+                if (currentSegment === numberOfSegments.value - 1) {
+                    
+                    return;
+                }
 
                 let newTime = segmentStartTimes.value[currentSegment + 1];
                 tl.time(newTime);
                 video.value.currentTime = newTime + defaultDuration;
-                gtag('event', 'click_forward', {
-                    'event_category': 'button',
-                    'event_label': 'forward'
-                });
+                // gtag('event', 'click_forward', {
+                //     'event_category': 'button',
+                //     'event_label': 'forward'
+                // });
             }
         };
 
@@ -300,6 +304,7 @@ export default {
             isPlaying.value = false;
             isPaused.value = true;
             tl.pause();
+            video.value.pause();
             // Clear any existing timer
             if (pauseTimer) {
                 clearTimeout(pauseTimer);
@@ -322,6 +327,7 @@ export default {
             isPlaying.value = true;
             isPaused.value = false;
             tl.play();
+            video.value.play();
             if (longPress.value) {
                 if (currentTime.value > 0.4) {
                     window.parent.postMessage("click_start", "*");
@@ -472,7 +478,8 @@ export default {
 
             // SEGMENT 1
                 segment1.add(() => {
-                    video.value.currentTime = 0;
+                    video.value.autoplay = true;
+                    video.value.load();
                     video.value.play();
                 }, 0);
             segment1.fromTo(["#text_1_1", "#text_1_2"],
@@ -526,10 +533,6 @@ export default {
             // SEGMENT 2
 
 
-            segment2.add(() => {
-                video.value.currentTime = segment1_duration.value;
-                video.value.play();
-            }, 0);
             segment2.fromTo(["#text_2_1", "#text_2_2"],
                     {
                         opacity: 0,
@@ -557,10 +560,6 @@ export default {
 
             // SEGMENT 3
 
-            segment3.add(() => {
-                video.value.currentTime = segment1_duration.value + segment2_duration.value;
-                video.value.play();
-            }, 0);
             segment3.fromTo(["#text_3_1", "#text_3_2"],
                 {
                     opacity: 0,
@@ -589,10 +588,7 @@ export default {
             // SEGMENT 4
 
 
-            segment4.add(() => {
-                video.value.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value;
-                video.value.play();
-            }, 0);
+
             segment4.fromTo(["#text_4_1", "#text_4_2"],
                 {
                     opacity: 0,
@@ -614,10 +610,6 @@ export default {
                     delay: 15
                 });
 
-            segment4.add(() => {
-                video.value.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4.duration();
-                video.value.play();
-            }, 0);
 
             segment4_duration.value = segment4.duration();
 

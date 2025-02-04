@@ -7,7 +7,7 @@
       <img :src="story_icon" class="story_icon" alt="">
     </div>
     <div id="text_container_stories" class="text_container">
-      <video ref="video" class="video_bg" muted>
+      <video ref="video" class="video_bg" muted playsinline>
         <source :src="video_bg_webm" type="video/webm">
         <source :src="video_bg" type="video/mp4">
       </video>
