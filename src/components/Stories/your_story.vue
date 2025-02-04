@@ -44,7 +44,8 @@
 
       <div class="go_to_promo" @click="getGift4">
           <div id="button7_flare" class="flare" :style="animationPauseStyle">
-          </div> Register on WinSpirit
+          </div>
+          <div class="button_register" v-html="texts.button_register"></div>
         </div>
 
     </div>

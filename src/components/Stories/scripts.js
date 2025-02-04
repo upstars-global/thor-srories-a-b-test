@@ -512,12 +512,7 @@ export default {
             const video = document.getElementById("video_bg");
 
             // SEGMENT 1
-            segment1.set(["#stories-segment_2", "#stories-segment_3",
-                    "#stories-segment_4", "#stories-segment_5", "#stories-segment_6",
-                    "#stories-segment_7"],
-                { opacity: 0, display: "none"});
                 segment1.add(() => {
-
                     video.currentTime = 0;
                     video.play();
                 }, 0);
@@ -572,6 +567,10 @@ export default {
             // SEGMENT 2
 
 
+            segment2.add(() => {
+                video.currentTime = segment1_duration.value;
+                video.play();
+            }, 0);
             segment2.fromTo(["#text_2_1", "#text_2_2"],
                     {
                         opacity: 0,
@@ -599,6 +598,10 @@ export default {
 
             // SEGMENT 3
 
+            segment3.add(() => {
+                video.currentTime = segment1_duration.value + segment2_duration.value;
+                video.play();
+            }, 0);
             segment3.fromTo(["#text_3_1", "#text_3_2"],
                 {
                     opacity: 0,
@@ -627,6 +630,10 @@ export default {
             // SEGMENT 4
 
 
+            segment4.add(() => {
+                video.currentTime = segment1_duration.value + segment2_duration.value + segment3_duration.value;
+                video.play();
+            }, 0);
             segment4.fromTo(["#text_4_1", "#text_4_2"],
                 {
                     opacity: 0,
