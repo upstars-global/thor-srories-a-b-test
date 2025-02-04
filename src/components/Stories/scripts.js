@@ -69,11 +69,6 @@ export default {
             }
         });
         const texts = ref('en');
-        const currency = ref('EUR');
-        const name = ref('');
-        const player_name = ref('');
-        const prizes = ref(965);
-        const top_prize = ref(5000);
         const pressTimer = ref(null);
         const pressDuration = 500;
         const longPress = ref(false);
@@ -136,10 +131,7 @@ export default {
             }
 
             if (segment4_time.value > 0 && !reach_end.value) {
-                gtag('event', 'reach_end', {
-                    'event_category': 'user_session',
-                    'event_label': 'reach_end'
-                });
+
                 reach_end.value = true;
             }
 
@@ -172,10 +164,6 @@ export default {
                     tl.time(newTime + defaultDuration);
                     video.value.currentTime = newTime + defaultDuration;
                 }
-                gtag('event', 'click_backward', {
-                    'event_category': 'button',
-                    'event_label': 'backward'
-                });
             } else if (direction === "forward") {
                 if (currentSegment === -1) {
                     return;
@@ -190,29 +178,17 @@ export default {
         };
 
         const closeStory = () => {
-            gtag('event', 'close_story', {
-                'event_category': 'button',
-                'event_label': end_link.value
-            });
             setTimeout(() => {
                 window.location.href = end_link.value;
             }, 150);
         };
         const watchAgain = () => {
-            gtag('event', 'watch_again', {
-                'event_category': 'button',
-                'event_label': 'watch_again'
-            });
             setTimeout(() => {
                 window.location.reload();
             }, 150);
         };
 
         const regButton = () => {
-            gtag('event', 'reg_button', {
-                'event_category': 'button',
-                'event_label': 'reg_button'
-            });
             setTimeout(() => {
                 window.location.href = end_link.value;
             }, 150);
@@ -229,13 +205,7 @@ export default {
             }
             pauseTimer = setTimeout(() => {
                 if (!isPlaying.value) {
-                    if (currentTime.value > 0.6) {
-                        window.parent.postMessage("click_pause", "*");
-                        gtag('event', 'click_pause', {
-                            'event_category': 'button',
-                            'event_label': 'click_pause'
-                        });
-                    }
+
                 }
             }, 300);
         };
@@ -245,13 +215,7 @@ export default {
             tl.play();
             video.value.play();
             if (longPress.value) {
-                if (currentTime.value > 0.4) {
-                    window.parent.postMessage("click_start", "*");
-                    gtag('event', 'click_start', {
-                        'event_category': 'button',
-                        'event_label': 'click_start'
-                    });
-                }
+
             }
         };
 
@@ -261,19 +225,11 @@ export default {
                 isPaused.value = true;
                 tl.pause();
                 video.value.pause();
-                gtag('event', 'click_pause', {
-                    'event_category': 'button',
-                    'event_label': 'pause'
-                });
             } else {
                 isPlaying.value = true;
                 isPaused.value = false;
                 tl.play();
                 video.value.play();
-                gtag('event', 'click_start', {
-                    'event_category': 'button',
-                    'event_label': 'start'
-                });
             }
         };
 
@@ -516,8 +472,6 @@ export default {
             texts,
             closeStory,
             watchAgain,
-            prizes,
-            top_prize,
             video_bg,
             video_bg_webm,
             video,
