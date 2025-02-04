@@ -11,8 +11,6 @@ import it from '@components/Stories/localization/it.json';
 import de from '@components/Stories/localization/de.json';
 import fr from '@components/Stories/localization/fr.json';
 import story_icon from "@components/Stories/img/avatar.webp";
-import bottom_gradient1 from "@components/Stories/img/bottom_gradient1.svg";
-import icon_replay from "@components/Stories/img/icons/icon_replay.svg";
 import video_bg from "@components/Stories/img/video.mp4";
 import video_bg_webm from "@components/Stories/img/video.webm";
 
@@ -84,7 +82,6 @@ export default {
         const shouldSeek = ref(0);
         const isPlaying = ref(true);
         const isPaused = ref(false);
-        const thumbs_part = ref(0);
         const numberOfSegments = ref(4);
         const isPlayingHasBeenSet = ref(false);
         const animationPauseStyle = computed(() => ({
@@ -512,14 +509,13 @@ export default {
             numberOfSegments,
             handleEvent,
             handleEventEnd,
+            story_icon,
             jumpToSegment,
             togglePlayState,
             animationPauseStyle,
             texts,
             closeStory,
             watchAgain,
-            story_icon,
-            icon_replay,
             prizes,
             top_prize,
             video_bg,
