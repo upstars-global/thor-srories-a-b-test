@@ -43,9 +43,7 @@
       </div>
 
 
-      <div class="go_to_promo" @click="regButton">
-          <div class="button_register" v-html="texts.button_register"></div>
-        </div>
+
 
     </div>
     <a @click='closeStory'>
@@ -83,6 +81,10 @@
             position="right"/>
       </div>
     </div>
+
+    <div class="go_to_promo" @click="regButton">
+          <div class="button_register" v-html="texts.button_register"></div>
+        </div>
 
   </div>
 </template>

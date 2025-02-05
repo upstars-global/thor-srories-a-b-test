@@ -183,4 +183,9 @@
   cursor: pointer;
   overflow: hidden;
   z-index: 9999;
+  @include media(M) {
+    bottom: 9%;
+    width: 52vh;
+    height: 6vh;
+  }
 }

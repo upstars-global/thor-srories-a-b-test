@@ -275,43 +275,18 @@ export default {
                 document.documentElement.style.setProperty("--vh", `${vh}px`);
             });
 
-            const fullURL = window.location.href;
-            const queryStartIndex = fullURL.indexOf('?');
+            const urlParams = new URLSearchParams(window.location.search);
 
-            if (queryStartIndex !== -1) {
-                const queryPart = fullURL.slice(queryStartIndex + 1);
-                const params = queryPart.split('&').reduce((acc, pair) => {
-                    const [key, value] = pair.split('=');
-                    acc[key] = decodeURIComponent(value);
-                    return acc;
-                }, {});
+            if (urlParams.has("language")) {
+                texts.value = urlParams.get("language");
+            }
+            if (urlParams.has("end_link")) {
+                end_link.value = urlParams.get("end_link");
+            }
 
-                if (params.language) {
-                    texts.value = params.language;
-                }
-                if (params.player_name) {
-                    player_name.value = params.player_name;
-                }
-                if (params.currency) {
-                    currency.value = params.currency;
-                }
-                if (params.top_prize) {
-                    top_prize.value = params.top_prize;
-                }
-                if (params.prizes) {
-                    prizes.value = params.prizes;
-                }
-
-                name.value = params.name;
-                if (params.end_link) {
-                    end_link.value = params.end_link;
-                }
-
-            } else {
-                const defaultLanguage = navigator.language.split('-')[0];
-                if (availableLanguages.languages.includes(defaultLanguage)) {
-                    texts.value = defaultLanguage;
-                }
+            const defaultLanguage = navigator.language.split('-')[0];
+            if (availableLanguages.languages.includes(defaultLanguage)) {
+                texts.value = defaultLanguage;
             }
 
             const locale = texts.value;
