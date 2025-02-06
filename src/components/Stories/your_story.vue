@@ -8,7 +8,7 @@
       class="story_icon" alt="">
     </div>
     <div id="text_container_stories" class="text_container">
-      <video ref="video" class="video_bg" muted playsinline>
+      <video ref="video" class="video_bg" preload="auto" muted playsinline>
         <source 
         v-if="user_language === 'fr'"
         :src="video_bg_webm_fr" type="video/webm">
