@@ -7,8 +7,6 @@ import CloseButton from "@components/Stories/UI/closeButton.vue";
 import gsap from "gsap";
 import availableLanguages from "/src/components/Stories/localization/available-languages.json";
 import en from '@components/Stories/localization/en.json';
-import it from '@components/Stories/localization/it.json';
-import de from '@components/Stories/localization/de.json';
 import fr from '@components/Stories/localization/fr.json';
 import story_icon from "@components/Stories/img/avatar.webp";
 import story_icon_fr from "@components/Stories/img/avatar_fr.webp";
@@ -88,8 +86,6 @@ export default {
         }));
         const languageMap = {
             en,
-            it,
-            de,
             fr
         };
 
