@@ -11,8 +11,10 @@ import it from '@components/Stories/localization/it.json';
 import de from '@components/Stories/localization/de.json';
 import fr from '@components/Stories/localization/fr.json';
 import story_icon from "@components/Stories/img/avatar.webp";
-import video_bg from "@components/Stories/img/video.mp4";
-import video_bg_webm from "@components/Stories/img/video.webm";
+import video_bg_en from "@components/Stories/img/video_en.mp4";
+import video_bg_webm_en from "@components/Stories/img/video_en.webm";
+import video_bg_fr from "@components/Stories/img/video_fr.mp4";
+import video_bg_webm_fr from "@components/Stories/img/video_fr.webm";
 
 export default {
     name: "Bonuses",
@@ -42,6 +44,7 @@ export default {
         const segment3_duration = ref(0);
         const segment4_duration = ref(0);
         const video = ref(null);
+        const user_language = ref('en');
         const end_link = ref('https://winspirit3.com/registration');
 
         const segment1 = gsap.timeline({
@@ -287,13 +290,16 @@ export default {
             const defaultLanguage = navigator.language.split('-')[0];
             if (availableLanguages.languages.includes(defaultLanguage)) {
                 texts.value = defaultLanguage;
+                user_language.value = defaultLanguage;
             }
 
             const locale = texts.value;
             if (availableLanguages.languages.includes(locale)) {
                 texts.value = languageMap[locale];
+                user_language.value = locale;
             } else {
                 texts.value = en;
+                user_language.value = 'en';
             }
 
             for (let key in texts.value) {
@@ -447,10 +453,13 @@ export default {
             texts,
             closeStory,
             watchAgain,
-            video_bg,
-            video_bg_webm,
+            video_bg_en,
+            video_bg_webm_en,
+            video_bg_fr,
+            video_bg_webm_fr,
             video,
-            regButton
+            regButton,
+            user_language
         };
     },
 };

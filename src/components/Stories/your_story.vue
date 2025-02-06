@@ -8,8 +8,18 @@
     </div>
     <div id="text_container_stories" class="text_container">
       <video ref="video" class="video_bg" muted playsinline>
-        <source :src="video_bg_webm" type="video/webm">
-        <source :src="video_bg" type="video/mp4">
+        <source 
+        v-if="user_language === 'fr'"
+        :src="video_bg_webm_fr" type="video/webm">
+        <source 
+        v-if="user_language === 'fr'"
+        :src="video_bg_fr" type="video/mp4">
+        <source 
+        v-else
+        :src="video_bg_webm_en" type="video/webm">
+        <source 
+        v-else
+        :src="video_bg_en" type="video/mp4">
       </video>
 
 
