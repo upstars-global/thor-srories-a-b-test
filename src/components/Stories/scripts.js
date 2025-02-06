@@ -11,6 +11,7 @@ import it from '@components/Stories/localization/it.json';
 import de from '@components/Stories/localization/de.json';
 import fr from '@components/Stories/localization/fr.json';
 import story_icon from "@components/Stories/img/avatar.webp";
+import story_icon_fr from "@components/Stories/img/avatar_fr.webp";
 import video_bg_en from "@components/Stories/img/video_en.mp4";
 import video_bg_webm_en from "@components/Stories/img/video_en.webm";
 import video_bg_fr from "@components/Stories/img/video_fr.mp4";
@@ -159,6 +160,7 @@ export default {
                     let newTime = segmentStartTimes.value[numberOfSegments.value - 2];
                     tl.time(newTime + defaultDuration);
                     video.value.currentTime = newTime + defaultDuration;
+                    video.value.play();
                 } else {
                     let newTime = segmentStartTimes.value[currentSegment - 1];
                     if (newTime < 0) {
@@ -166,6 +168,7 @@ export default {
                     }
                     tl.time(newTime + defaultDuration);
                     video.value.currentTime = newTime + defaultDuration;
+                    video.value.play();
                 }
             } else if (direction === "forward") {
                 if (currentSegment === -1) {
@@ -177,6 +180,7 @@ export default {
                 let newTime = segmentStartTimes.value[currentSegment + 1];
                 tl.time(newTime);
                 video.value.currentTime = newTime + defaultDuration;
+                video.value.play();
             }
         };
 
@@ -459,7 +463,8 @@ export default {
             video_bg_webm_fr,
             video,
             regButton,
-            user_language
+            user_language,
+            story_icon_fr
         };
     },
 };

@@ -4,7 +4,8 @@
         :progress="progress"
         :number-of-segments="numberOfSegments"/>
     <div class="info_row">
-      <img :src="story_icon" class="story_icon" alt="">
+      <img :src="user_language === 'fr' ? story_icon_fr : story_icon" 
+      class="story_icon" alt="">
     </div>
     <div id="text_container_stories" class="text_container">
       <video ref="video" class="video_bg" muted playsinline>
