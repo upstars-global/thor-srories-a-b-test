@@ -182,6 +182,22 @@ export default {
             }
         };
 
+        // Функция для отправки сообщений без контекста (для события загрузки)
+        const sendSimpleMessageToParent = (action) => {
+            const message = {
+                type: "stories",
+                action: action
+            };
+            
+            // Вывод сообщения в консоль
+            console.log('Sending simple message to parent:', message);
+            
+            // Отправка сообщения родительскому окну
+            if (window.parent) {
+                window.parent.postMessage(message, '*');
+            }
+        };
+
         const jumpToSegment = (direction) => {
             let currentSegment = segmentStartTimes.value.findIndex((startTime, i) => {
                 return currentTime.value >= startTime && currentTime.value < segmentStartTimes.value[i + 1];
@@ -331,6 +347,11 @@ export default {
                 let vh = Math.round(window.innerHeight / 100);
                 document.documentElement.style.setProperty("--vh", `${vh}px`);
             });
+
+            // Отправляем сообщение о загрузке сайта в режиме iframe (без контекста)
+            if (iframeMode.value) {
+                sendSimpleMessageToParent('loaded');
+            }
 
             const urlParams = new URLSearchParams(window.location.search);
 
