@@ -209,6 +209,11 @@ export default {
                     tl.time(newTime + defaultDuration);
                     video.value.currentTime = newTime + defaultDuration;
                     video.value.play();
+                    
+                    // Отправляем сообщение о переходе на предыдущий сегмент
+                    if (iframeMode.value) {
+                        sendMessageToParent('previous_segment');
+                    }
                 } else {
                     let newTime = segmentStartTimes.value[currentSegment - 1];
                     if (newTime < 0) {
@@ -217,6 +222,11 @@ export default {
                     tl.time(newTime + defaultDuration);
                     video.value.currentTime = newTime + defaultDuration;
                     video.value.play();
+                    
+                    // Отправляем сообщение о переходе на предыдущий сегмент
+                    if (iframeMode.value) {
+                        sendMessageToParent('previous_segment');
+                    }
                 }
             } else if (direction === "forward") {
                 if (currentSegment === -1) {
@@ -229,6 +239,11 @@ export default {
                 tl.time(newTime);
                 video.value.currentTime = newTime + defaultDuration;
                 video.value.play();
+                
+                // Отправляем сообщение о переходе на следующий сегмент
+                if (iframeMode.value) {
+                    sendMessageToParent('next_segment');
+                }
             }
         };
 
@@ -273,6 +288,12 @@ export default {
             isPaused.value = true;
             tl.pause();
             video.value.pause();
+            
+            // Отправляем сообщение о паузе
+            if (iframeMode.value) {
+                sendMessageToParent('pause');
+            }
+            
             if (pauseTimer) {
                 clearTimeout(pauseTimer);
             }
@@ -282,11 +303,18 @@ export default {
                 }
             }, 300);
         };
+        
         const playerPlay = () => {
             isPlaying.value = true;
             isPaused.value = false;
             tl.play();
             video.value.play();
+            
+            // Отправляем сообщение о воспроизведении
+            if (iframeMode.value) {
+                sendMessageToParent('play');
+            }
+            
             if (longPress.value) {
 
             }
@@ -298,11 +326,21 @@ export default {
                 isPaused.value = true;
                 tl.pause();
                 video.value.pause();
+                
+                // Отправляем сообщение о паузе
+                if (iframeMode.value) {
+                    sendMessageToParent('pause');
+                }
             } else {
                 isPlaying.value = true;
                 isPaused.value = false;
                 tl.play();
                 video.value.play();
+                
+                // Отправляем сообщение о воспроизведении
+                if (iframeMode.value) {
+                    sendMessageToParent('play');
+                }
             }
         };
 
