@@ -76,7 +76,7 @@ export default {
         });
         const texts = ref('en');
         const pressTimer = ref(null);
-        const pressDuration = 500;
+        const pressDuration = 1000;
         const longPress = ref(false);
         const currentTime = ref(0);
         const duration = ref(0);
@@ -289,10 +289,7 @@ export default {
             tl.pause();
             video.value.pause();
             
-            // Отправляем сообщение о паузе
-            if (iframeMode.value) {
-                sendMessageToParent('pause');
-            }
+            // Сообщение о паузе будет отправлено только при долгом нажатии в функции press()
             
             if (pauseTimer) {
                 clearTimeout(pauseTimer);
@@ -310,14 +307,7 @@ export default {
             tl.play();
             video.value.play();
             
-            // Отправляем сообщение о воспроизведении
-            if (iframeMode.value) {
-                sendMessageToParent('play');
-            }
-            
-            if (longPress.value) {
-
-            }
+            // Сообщение о воспроизведении будет отправлено только при долгом нажатии в функции release()
         };
 
         const togglePlayState = () => {
@@ -327,7 +317,7 @@ export default {
                 tl.pause();
                 video.value.pause();
                 
-                // Отправляем сообщение о паузе
+                // Отправляем сообщение о паузе (при клике на кнопку паузы/воспроизведения всегда отправляем)
                 if (iframeMode.value) {
                     sendMessageToParent('pause');
                 }
@@ -337,7 +327,7 @@ export default {
                 tl.play();
                 video.value.play();
                 
-                // Отправляем сообщение о воспроизведении
+                // Отправляем сообщение о воспроизведении (при клике на кнопку паузы/воспроизведения всегда отправляем)
                 if (iframeMode.value) {
                     sendMessageToParent('play');
                 }
@@ -348,6 +338,11 @@ export default {
             playerPause();
             pressTimer.value = setTimeout(() => {
                 longPress.value = true;
+                
+                // Отправляем сообщение о паузе только при долгом нажатии
+                if (iframeMode.value) {
+                    sendMessageToParent('pause');
+                }
             }, pressDuration);
         };
 
@@ -355,6 +350,11 @@ export default {
             clearTimeout(pressTimer.value);
             if (longPress.value) {
                 playerPlay();
+                
+                // Отправляем сообщение о воспроизведении только при долгом нажатии
+                if (iframeMode.value) {
+                    sendMessageToParent('play');
+                }
             } else {
                 playerPlay();
                 jumpToSegment(direction);
