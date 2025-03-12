@@ -45,6 +45,7 @@ export default {
         const video = ref(null);
         const user_language = ref('en');
         const end_link = ref('https://winspirit3.com/registration');
+        const iframeMode = ref(window.self !== window.top);
 
         const segment1 = gsap.timeline({
             defaults: { duration: defaultDuration, ease: "power1.inOut" },
@@ -460,7 +461,8 @@ export default {
             video,
             regButton,
             user_language,
-            story_icon_fr
+            story_icon_fr,
+            iframeMode
         };
     },
 };
