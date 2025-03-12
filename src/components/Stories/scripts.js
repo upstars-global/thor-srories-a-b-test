@@ -150,6 +150,38 @@ export default {
             segment1_duration.value + segment2_duration.value + segment3_duration.value + segment4_duration.value,
         ]);
 
+        // Функция для определения текущего сегмента
+        const getCurrentSegment = () => {
+            let currentSegment = segmentStartTimes.value.findIndex((startTime, i) => {
+                return currentTime.value >= startTime && currentTime.value < segmentStartTimes.value[i + 1];
+            });
+            
+            // Если не нашли сегмент или результат -1, возвращаем 1 по умолчанию
+            return (currentSegment >= 0 && currentSegment < 4) ? currentSegment + 1 : 1;
+        };
+
+        // Функция для отправки сообщений родительскому окну
+        const sendMessageToParent = (action, additionalContext = {}) => {
+            const currentSegment = getCurrentSegment();
+            
+            const message = {
+                type: "stories",
+                action: action,
+                context: {
+                    segment: String(currentSegment),
+                    ...additionalContext
+                }
+            };
+            
+            // Вывод сообщения в консоль
+            console.log('Sending message to parent:', message);
+            
+            // Отправка сообщения родительскому окну
+            if (window.parent) {
+                window.parent.postMessage(message, '*');
+            }
+        };
+
         const jumpToSegment = (direction) => {
             let currentSegment = segmentStartTimes.value.findIndex((startTime, i) => {
                 return currentTime.value >= startTime && currentTime.value < segmentStartTimes.value[i + 1];
@@ -185,20 +217,38 @@ export default {
         };
 
         const closeStory = () => {
-            setTimeout(() => {
-                window.location.href = end_link.value;
-            }, 150);
+            if (iframeMode.value) {
+                // В режиме iframe отправляем сообщение родительскому окну
+                sendMessageToParent('close_story');
+            } else {
+                // В обычном режиме переходим по ссылке
+                setTimeout(() => {
+                    window.location.href = end_link.value;
+                }, 150);
+            }
         };
         const watchAgain = () => {
-            setTimeout(() => {
-                window.location.reload();
-            }, 150);
+            if (iframeMode.value) {
+                // В режиме iframe отправляем сообщение родительскому окну
+                sendMessageToParent('watch_again');
+            } else {
+                // В обычном режиме перезагружаем страницу
+                setTimeout(() => {
+                    window.location.reload();
+                }, 150);
+            }
         };
 
         const regButton = () => {
-            setTimeout(() => {
-                window.location.href = end_link.value;
-            }, 150);
+            if (iframeMode.value) {
+                // В режиме iframe отправляем сообщение родительскому окну
+                sendMessageToParent('registration');
+            } else {
+                // В обычном режиме переходим по ссылке
+                setTimeout(() => {
+                    window.location.href = end_link.value;
+                }, 150);
+            }
         };
         let pauseTimer = null;
 
