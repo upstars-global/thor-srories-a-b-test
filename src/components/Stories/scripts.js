@@ -47,6 +47,9 @@ export default {
         const end_link = ref('https://winspirit3.com/registration');
         const iframeMode = ref(window.self !== window.top);
 
+        // Логирование состояния iframeMode в консоль
+        console.log('iframeMode:', iframeMode.value);
+
         const segment1 = gsap.timeline({
             defaults: { duration: defaultDuration, ease: "power1.inOut" },
             onUpdate: () => {
