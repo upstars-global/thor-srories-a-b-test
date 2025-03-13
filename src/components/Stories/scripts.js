@@ -535,6 +535,11 @@ export default {
                 {
                     delay: 15
                 });
+            segment4.add(() => {
+                if (iframeMode.value) {
+                    sendSimpleMessageToParent('ended');
+                }
+            });
             segment4_duration.value = segment4.duration();
 
             tl.add(segment1);
