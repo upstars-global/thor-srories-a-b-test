@@ -165,7 +165,7 @@ export default {
             const currentSegment = getCurrentSegment();
             
             const message = {
-                type: "stories",
+                type: "registration",
                 action: action,
                 context: {
                     segment: String(currentSegment),
@@ -185,7 +185,7 @@ export default {
         // Функция для отправки сообщений без контекста (для события загрузки)
         const sendSimpleMessageToParent = (action) => {
             const message = {
-                type: "stories",
+                type: "registration",
                 action: action
             };
             
