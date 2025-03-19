@@ -393,6 +393,13 @@ export default {
 
             const urlParams = new URLSearchParams(window.location.search);
 
+            const defaultLanguage = navigator.language.split('-')[0];
+            if (availableLanguages.languages.includes(defaultLanguage)) {
+                texts.value = defaultLanguage;
+                user_language.value = defaultLanguage;
+            }
+
+
             if (urlParams.has("language")) {
                 texts.value = urlParams.get("language");
             }
@@ -400,11 +407,6 @@ export default {
                 end_link.value = urlParams.get("end_link");
             }
 
-            const defaultLanguage = navigator.language.split('-')[0];
-            if (availableLanguages.languages.includes(defaultLanguage)) {
-                texts.value = defaultLanguage;
-                user_language.value = defaultLanguage;
-            }
 
             const locale = texts.value;
             if (availableLanguages.languages.includes(locale)) {
