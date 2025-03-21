@@ -164,7 +164,7 @@
 
 .go_to_promo {
   position: absolute;
-  bottom: 3%;
+  bottom: 9%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -185,7 +185,6 @@
   overflow: hidden;
   z-index: 9999;
   @include media(M) {
-    bottom: 9%;
     width: 52vh;
     height: 6vh;
   }
